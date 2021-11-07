@@ -1,0 +1,156 @@
+/**
+ * CONTENTS
+ *
+ * SETTINGS
+ * Global...............Globally-available variables and config.
+ *
+ * GENERIC
+ * Box-sizing...........Better default `box-sizing`.
+ *
+ * BASE
+ * Headings.............H1–H6 styles.
+ *
+ * COMPONENTS
+ * #header............The main page header.
+ * #footer............The main page footer.
+ * buttons..............Button elements.
+ *
+ * SECTIONS
+ *
+ * MODIFIER CLASSES
+ *
+ */
+
+
+
+/*------------------------------------*\
+  SETTINGS
+\*------------------------------------*/
+
+@font-face {
+  font-family: 'aileron-bold';
+  src: url('assets/fonts/') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'aileron-bold';
+  src: url('assets/fonts/Ail') format('woff');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'aileron-bold';
+  src: url('assets/fonts') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* GLOBAL VARIABLES */
+
+:root {
+
+  /* Colors */
+
+
+  /* font colors */
+  --color-paragraph: 
+  --color-headings: 
+}
+
+
+
+
+
+/*------------------------------------*\
+GENERIC
+\*------------------------------------*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+/*------------------------------------*\
+BASE
+\*------------------------------------*/
+
+/* body */
+/* headings */
+/* paragraphs */
+
+
+
+
+
+
+
+
+/*------------------------------------*\
+ # SECTION
+\*------------------------------------*/
+
+/* styling of different sections in the page */
+
+
+
+
+
+
+
+/*------------------------------------*\
+ # FOOTER
+\*------------------------------------*/
+
+
+
+
+
+
+
+
+
+/*------------------------------------*\
+  MODIFIER CLASSES
+\*------------------------------------*/
+
+/* width modifier classes */
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60rem;
+}
+
+.width-lg {
+  max-width: 60rem;
+}
+
+.width-md {
+  max-width: 40rem;
+}
+
+.width-sm {
+  max-width: 20rem;
+}
+
+
+/* stack modifier classes */
+
+.stack-lg > * + * {
+  margin-top: 3rem;
+}
+
+.stack-md > * + * {
+  margin-top: 1.2rem; 
+}
+
+.stack-sm > * + * {
+  margin-top: 0.5rem;
+}
