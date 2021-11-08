@@ -55,7 +55,7 @@ const displayImage = (data) => {
   `; 
 
   // update DOM
-  gifSection.insertAdjacentHTML('beforeend', html); 
+  gifSection.firstElementChild.innerHTML = html;
 
 }
 
@@ -98,7 +98,7 @@ function displayWeather(data) {
   `
 
   // update DOM
-  weatherSection.insertAdjacentHTML('beforeend', html);
+  weatherSection.firstElementChild.innerHTML = html;
 
 }
 
@@ -136,11 +136,10 @@ function displayWeather(data) {
 function displayCityName(inputCity) {
 
   // Create a paragraph to display the city name
-  const inputCityName = document.createElement('p');
-  inputCityName.textContent = `${inputCity}`.toUpperCase();
+  inputCityName = `<P>${inputCity}</P>`.toUpperCase();
   
   // Display the city name
-  userInputDisplay.append(inputCityName); 
+  userInputDisplay.innerHTML = inputCityName; 
 
 }
 

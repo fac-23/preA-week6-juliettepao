@@ -9,39 +9,81 @@
 </head>
 <body>
 
-  <header>
+  <!-- Navigation -->
+  <header class='nav'>
 
-    <nav></nav>
+    <nav class='nav__container center'>
+      <div class="nav__brand">
+        <div class="nav__brand-logo">
+          <img src="assets/img/logo.png" alt="Logo for the Travel Buddy App">
+        </div>
+        <span class="nav__brand-name">TravelBuddy</span>
+      </div>
+    </nav>
 
   </header>
 
-  <main class='center stack-lg'>
+  <main>
 
-    <h1>API!</h1>
+    <!-- Intro section-->
+    <section class="section intro stack-md">
 
-    <!-- User Input section-->
-    <section class='user-input stack-md'>
+      <div class="section-wrapper center stack-lg">
 
-      <label for='user-input__input--city'>Enter your favourite city!</label>
-      <input type='text' name='user-input__input--city' id='user-input__input--city'>
+        <h1 class='intro__title'>A FUN API FOR ALL YOU TRAVELLERS!</h1>
 
-      <button type='button' class='.btn user-input__btn'>SEARCH CITY</button>
+        <p class="intro__copy">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero iusto debitis, consequatur id beatae exercitationem harum officiis, laudantium aspernatur culpa ullam? Fugiat, ut quibusdam rerum at iusto nihil totam optio!
+        </p>
 
-      <h2>What city are you interested in?</h2>
-
-      <div class="user-input__display">
       </div>
+      </section>
 
-    </section>
+    <div class="results center">
+
+      <!-- User Input section-->
+      <section class='section user-input'>
+
+        <div class="section-wrapper center stack-lg">
+
+          <h2>What city are you interested in?</h2>
+
+          <label for='user-input__input--city' class='user-input__label'>Enter your favourite city!</label>
+          <input type='text' name='user-input__input--city' id='user-input__input--city'>
+
+          <button type='button' class='btn user-input__btn'>SEARCH CITY</button>
+
+          <div class="user-input__display">
+          </div>
+        
+        </div>
+
+      </section>
+
+    
+      <!-- Giphy IMG section -->
+      
+      <section class='section gif'>
+
+        <div class="section-wrapper stack-lg">
+
+        </div>
+
+      </section>
 
 
-    <!-- Weather section -->
-    <section class='weather width-md'></section>
+      <!-- Weather section -->
+      <section class='section weather'>
 
+        <div class="section-wrapper stack-lg">
 
-  
-    <!-- Giphy IMG section -->
-    <section class='gif width-md'></section>
+        </div>
+
+      </section>
+
+    </div>
+
+    
 
 
   </main>
