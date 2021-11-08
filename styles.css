@@ -28,36 +28,34 @@
 \*------------------------------------*/
 
 @font-face {
-  font-family: 'aileron-bold';
-  src: url('assets/fonts/') format('woff');
+  font-family: 'anudawregular';
+  src: url('assets/fonts/ANUDRG__-webfont.woff') format('woff');
   font-weight: 300;
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'aileron-bold';
-  src: url('assets/fonts/Ail') format('woff');
-  font-weight: 600;
-  font-style: normal;
-}
 
-@font-face {
-  font-family: 'aileron-bold';
-  src: url('assets/fonts') format('woff');
-  font-weight: 700;
-  font-style: normal;
-}
 
 /* GLOBAL VARIABLES */
 
 :root {
 
   /* Colors */
-
+  --color-green: #10FFCB;
+  --color-grey: #B9B6B8;
+  --color-pink: #E5BEED;
 
   /* font colors */
   --color-paragraph: 
   --color-headings: 
+}
+
+@media screen and (min-width: 600px) {
+
+  :root {
+    font-size: 115%;
+  }
+
 }
 
 
@@ -85,7 +83,24 @@ BASE
 /* headings */
 /* paragraphs */
 
+body {
+  font-family: 'sans-serif';
+}
 
+main {
+  margin-top: 92px;
+}
+
+.btn, input {
+  background-color: var(--color-green);
+  padding: 1rem;
+  border: none;
+}
+
+
+h1, h2, span, .user-input__display {
+  font-family: 'anudawregular', 'sans-serif';
+}
 
 
 
@@ -93,13 +108,137 @@ BASE
 
 
 /*------------------------------------*\
- # SECTION
+ # NAVIGATION
+\*------------------------------------*/
+
+.nav {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+
+.nav__brand {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem;
+}
+
+.nav__brand-logo {
+  background-color: var(--color-green);
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.nav__brand-logo img {
+  height: 50px;
+  max-width: 100%;
+}
+
+.nav__brand-name {
+  padding-left: 5px;
+}
+
+
+
+/*------------------------------------*\
+ # SECTION - GENERIC
 \*------------------------------------*/
 
 /* styling of different sections in the page */
 
+.section {
+    border-radius: 20px;
+    text-align: center;
+}
+.section-wrapper {
+  padding: 2rem 1rem;
+}
+
+@media screen and (min-width: 600px) {
+
+  .section-wrapper {
+    padding: 5rem 1rem;
+  } 
+
+}
 
 
+
+
+
+/*------------------------------------*\
+ # USER INPUT SECTION
+\*------------------------------------*/
+
+
+
+.user-input {
+  background-color: var(--color-grey);
+}
+
+.user-input__label {
+  display: block;
+}
+
+.user-input__display {
+  font-size: 3rem;
+}
+
+
+
+
+
+/*-----------------------------------------*\
+ # RESULTS (WRAPS GIF AND WEATHER TOGETHER)
+\*-----------------------------------------*/
+
+
+.results {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 600px) {
+  
+  .results {
+    flex-direction: row;
+  }
+
+}
+
+
+
+/*------------------------------------*\
+ # GIF SECTION
+\*------------------------------------*/
+
+.gif {
+  background-color: var(--color-pink);
+}
+
+.gif__img {
+  border: 5px solid #fff;
+  max-width: 100%;
+}
+
+
+
+
+
+/*------------------------------------*\
+ # WEATHER SECTION
+\*------------------------------------*/
+
+.weather {
+  background-color: var(--color-green);
+}
 
 
 
