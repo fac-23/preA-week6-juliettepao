@@ -1,51 +1,48 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-  <meta charset='UTF-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <link rel='stylesheet' href='styles.css'>
-  <title>Fetch & APIs</title>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Fetch & APIs</title>
+  </head>
+  <body>
+    <header>
+      <nav></nav>
+    </header>
 
-  <header>
+    <main class="center stack-lg">
+      <h1>API!</h1>
 
-    <nav></nav>
+      <!-- User Input section-->
+      <section class="user-input stack-md">
+        <label for="user-input__input--city">Enter your favourite city!</label>
+        <input
+          type="text"
+          name="user-input__input--city"
+          id="user-input__input--city"
+        />
 
-  </header>
+        <button type="button" class=".btn user-input__btn">SEARCH CITY</button>
 
-  <main class='center stack-lg'>
+        <h2>What city are you interested in?</h2>
 
-    <h1>API!</h1>
+        <div class="user-input__display"></div>
+      </section>
 
-    <!-- User Input section-->
-    <section class='user-input stack-md'>
+      <!-- Weather section -->
+      <section class="weather width-md"></section>
 
-      <label for='user-input__input--city'>Enter your favourite city!</label>
-      <input type='text' name='user-input__input--city' id='user-input__input--city'>
+      <!-- Giphy IMG section -->
+      <section class="gif width-md"></section>
 
-      <button type='button' class='.btn user-input__btn'>SEARCH CITY</button>
+      <section class="news width-md"></section>
 
-      <h2>What city are you interested in?</h2>
+      <!-- Error message section -->
+      <section class="error width-md"></section>
+    </main>
 
-      <div class="user-input__display">
-      </div>
-
-    </section>
-
-
-    <!-- Weather section -->
-    <section class='weather width-md'></section>
-
-
-  
-    <!-- Giphy IMG section -->
-    <section class='gif width-md'></section>
-
-
-  </main>
-
-<script src='app.js'></script>  
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>
