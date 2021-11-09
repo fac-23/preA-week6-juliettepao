@@ -1,93 +1,85 @@
 <!DOCTYPE html>
-<html lang='en'>
-<head>
-  <meta charset='UTF-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <link rel='stylesheet' href='styles.css'>
-  <title>Fetch & APIs</title>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <header class='nav'>
-
-    <nav class='nav__container center'>
-      <div class="nav__brand">
-        <div class="nav__brand-logo">
-          <img src="assets/img/logo.png" alt="Logo for the Travel Buddy App">
-        </div>
-        <span class="nav__brand-name">TravelBuddy</span>
-      </div>
-    </nav>
-
-  </header>
-
-  <main>
-
-    <!-- Intro section-->
-    <section class="section intro stack-md">
-
-      <div class="section-wrapper center stack-lg">
-
-        <h1 class='intro__title'>A FUN API FOR ALL YOU TRAVELLERS!</h1>
-
-        <p class="intro__copy">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero iusto debitis, consequatur id beatae exercitationem harum officiis, laudantium aspernatur culpa ullam? Fugiat, ut quibusdam rerum at iusto nihil totam optio!
-        </p>
-
-      </div>
-      </section>
-
-    <div class="results center">
-
-      <!-- User Input section-->
-      <section class='section user-input'>
-
-        <div class="section-wrapper center stack-lg">
-
-          <h2>What city are you interested in?</h2>
-
-          <label for='user-input__input--city' class='user-input__label'>Enter your favourite city!</label>
-          <input type='text' name='user-input__input--city' id='user-input__input--city'>
-
-          <button type='button' class='btn user-input__btn'>SEARCH CITY</button>
-
-          <div class="user-input__display">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Fetch & APIs</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <header class="nav">
+      <nav class="nav__container center">
+        <div class="nav__brand">
+          <div class="nav__brand-logo">
+            <img
+              src="assets/img/logo.png"
+              alt="Logo for the Travel Buddy App"
+            />
           </div>
-        
+          <span class="nav__brand-name">TravelBuddy</span>
         </div>
+      </nav>
+    </header>
 
+    <main>
+      <!-- Intro section-->
+      <section class="section intro stack-md">
+        <div class="section-wrapper center stack-lg">
+          <h1 class="intro__title">A FUN API FOR ALL YOU TRAVELLERS!</h1>
+
+          <p class="intro__copy">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero iusto
+            debitis, consequatur id beatae exercitationem harum officiis,
+            laudantium aspernatur culpa ullam? Fugiat, ut quibusdam rerum at
+            iusto nihil totam optio!
+          </p>
+        </div>
       </section>
 
-    
-      <!-- Giphy IMG section -->
-      
-      <section class='section gif'>
+      <!-- Visualiser IMG section -->
+      <div class="loading-container">
+        <img src="assets/images/map-symbol.png" class="loading" />
+        <hr />
+      </div>
 
-        <div class="section-wrapper stack-lg">
+      <div class="results center">
+        <!-- User Input section-->
+        <section class="section user-input">
+          <div class="section-wrapper center stack-lg">
+            <h2>What city are you interested in?</h2>
 
-        </div>
+            <label for="user-input__input--city" class="user-input__label"
+              >Enter your favourite city!</label
+            >
+            <input
+              type="text"
+              name="user-input__input--city"
+              id="user-input__input--city"
+            />
 
-      </section>
+            <button type="button" class="btn user-input__btn">
+              SEARCH CITY
+            </button>
 
+            <div class="user-input__display"></div>
+          </div>
+        </section>
 
-      <!-- Weather section -->
-      <section class='section weather'>
+        <!-- Giphy IMG section -->
 
-        <div class="section-wrapper stack-lg">
+        <section class="section gif">
+          <div class="section-wrapper stack-lg"></div>
+        </section>
 
-        </div>
+        <!-- Weather section -->
+        <section class="section weather">
+          <div class="section-wrapper stack-lg"></div>
+        </section>
+      </div>
+    </main>
 
-      </section>
-
-    </div>
-
-    
-
-
-  </main>
-
-<script src='app.js'></script>  
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>
