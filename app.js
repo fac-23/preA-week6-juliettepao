@@ -97,15 +97,13 @@ function displayWeather(data) {
 
 // Function to render the user city selection on the page
 function displayCityName(inputCity) {
-  // Create a paragraph to display the city name
 
+  // Create a paragraph to display the city name
   inputCityName = `<P>${inputCity}</P>`.toUpperCase();
   
   // Display the city name
   userInputDisplay.innerHTML = inputCityName; 
 
-  // Display the city name
-  userInputDisplay.append(inputCityName);
 }
 
 // Function to update ALL data on the page relative to the city
