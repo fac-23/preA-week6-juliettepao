@@ -45,8 +45,11 @@ const displayImage = data => {
   `;
 
   // update DOM
-  gifSection.insertAdjacentHTML("beforeend", html);
-};
+
+  gifSection.firstElementChild.innerHTML = html;
+
+}
+
 
 // /* API request */
 
@@ -74,7 +77,9 @@ function displayWeather(data) {
   `;
 
   // update DOM
-  weatherSection.insertAdjacentHTML("beforeend", html);
+
+  weatherSection.firstElementChild.innerHTML = html;
+
 }
 
 // /* API request */
@@ -93,8 +98,11 @@ function displayWeather(data) {
 // Function to render the user city selection on the page
 function displayCityName(inputCity) {
   // Create a paragraph to display the city name
-  const inputCityName = document.createElement("p");
-  inputCityName.textContent = `${inputCity}`.toUpperCase();
+
+  inputCityName = `<P>${inputCity}</P>`.toUpperCase();
+  
+  // Display the city name
+  userInputDisplay.innerHTML = inputCityName; 
 
   // Display the city name
   userInputDisplay.append(inputCityName);
@@ -125,9 +133,9 @@ function updateCityData() {
     .then(data => displayWeather(data));
 
   /* News */
-  //I'm having issues with this fetch. I've tried it with the generic example they give but still gettin an erro
+
   fetch(
-    `https://newsapi.org/v2/everything?q=tesla&from=2021-10-08&sortBy=publishedAt&apiKey=${newsKey}`
+    `https://newsapi.org/v2/everything?q=tesla&from=2021-11-09&sortBy=publishedAt&apiKey=${newsKey}`
   )
     .then(response => response.json())
     .then(data => console.log(data));
