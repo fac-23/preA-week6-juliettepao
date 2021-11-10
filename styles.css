@@ -97,8 +97,7 @@ main {
   border: none;
 }
 
-
-h1, h2, span, .user-input__display {
+h1, span, .user-input__display {
   font-family: 'anudawregular', 'sans-serif';
 }
 
@@ -188,10 +187,20 @@ h1, h2, span, .user-input__display {
 }
 
 .user-input__display {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
+@media screen and (min-width: 600px) {
+  .user-input {
+    background-color: var(--color-grey);
+    max-width: 50%;
+  }
 
+  .user-input__display {
+    font-size: 3rem;
+  }
+
+}
 
 
 
@@ -216,14 +225,17 @@ h1, h2, span, .user-input__display {
 
 
 /*------------------------------------*\
- # GIF SECTION
+ # CITY IMG SECTION
 \*------------------------------------*/
 
-.gif {
+.city-pic{
   background-color: var(--color-pink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.gif__img {
+.city-pic__img {
   border: 5px solid #fff;
   max-width: 100%;
 }
@@ -240,7 +252,20 @@ h1, h2, span, .user-input__display {
   background-color: var(--color-green);
 }
 
+.weather__img {
+  width: 300px;
+  max-width: 100%;
+  border: 5px solid #fff;
+}
 
+.weather-section__description {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.weather-section__current-temp {
+  font-weight: bold;
+}
 
 
 /*------------------------------------*\
