@@ -38,7 +38,7 @@
 
 /* GLOBAL VARIABLES */
 
-:root {
+html {
 
   /* Colors */
   --color-green: #10FFCB;
@@ -52,7 +52,7 @@
 
 @media screen and (min-width: 600px) {
 
-  :root {
+  html {
     font-size: 115%;
   }
 
