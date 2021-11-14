@@ -9,7 +9,7 @@
 \*-------------------------------------------*/
 
 /* User Input section */
-const userInputForm = document.querySelector(".user-input__form");
+const userInputForm = document.querySelector("form");
 const userInputDisplay = document.querySelector(".user-input__display");
 const searchBtn = document.querySelector(".user-input__btn");
 const cityNameDisplay = document.querySelector(".city-name-display");
@@ -23,7 +23,8 @@ const cityPicSection = document.querySelector(".city-pic");
 const giphyKey = "RXsaSeN2Q8Sm1V12ZBhek7ZesgLCWrFY";
 
 /* goweather API */
-const weatherSection = document.querySelector(".weather");
+const weatherDescriptionDiv = document.querySelector(".weather__description");
+const weatherImageDiv = document.querySelector(".weather__gif");
 const currentTemperature = document.querySelector(".weather__current-temp");
 const weatherDescription = document.querySelector(".weather__current-temp");
 
@@ -41,11 +42,11 @@ const newsKey = "070c988ee1c2436c95535e3a38969fc5";
 \*----------------------------------------------------*/
 
 /* Function to render the user city selection on the page */
-const displayCityName = inputCity => {
+const displayCityName = data => {
   // Create a paragraph to display the city name
-  inputCityName = `<P>${inputCity}</P>`.toUpperCase();
+  html = `<P>${data}</P>`.toUpperCase();
   // Display the city name
-  userInputDisplay.innerHTML = inputCityName; 
+  userInputDisplay.innerHTML = html; 
 }
 
 
@@ -61,29 +62,27 @@ const displayWeather = data => {
   </div>
   `;
   // update DOM
-  weatherSection.firstElementChild.innerHTML = html;
+  weatherDescriptionDiv.innerHTML = html;
 }
 
 
 /* Function to display gif from Giphy API */
 const displayGif = data => {
   // Create html to update DOM
-  const weatherGif = document.createElement('img');
-  weatherGif.classList.add('weather__img');
-  weatherGif.alt = `${data.data[0].title}`
-  weatherGif.src = `${data.data[0].images.downsized.url}`;
+  const html = `<img src="${data.data[0].images.downsized.url}" alt="${data.data[0].title}" class="weather__img">`;
+
   // update DOM
-  weatherSection.firstElementChild.append(weatherGif);
+  weatherImageDiv.innerHTML = html;
 }
 
 
 /* Function to display a picture of the city from Unsplash */
 const displayCityPic = data => {
   // Create html to update DOM
-  const cityPic = `<img src="${data.results[0].urls.small}" alt="${data.results[0].alt_description}" class="city-pic__img">`;
+  const html = `<img src="${data.results[0].urls.small}" alt="${data.results[0].alt_description}" class="city-pic__img">`;
 
   // update DOM
-  cityPicSection.firstElementChild.innerHTML = cityPic;
+  cityPicSection.firstElementChild.innerHTML = html;
 }
 
 
@@ -99,16 +98,14 @@ const displayArticle = data => {
 
 
 // Function to update ALL data on the page relative to the city, once the user clicks the button.
-function updateCityData() {
-  // Retrieve value entered by user in input field.
-  const inputCity = document.querySelector("#user-input__input--city").value;
+function updateCityData(cityName) {
   // Call displayCityName() to display the city name.
-  displayCityName(inputCity);
+  displayCityName(cityName);
 
   // Use promiseAll to simultaneously retrieve both unsplash API and news API data.
-  const unsplashPromise = fetch(`https://api.unsplash.com/search/photos/?client_id=${unsplashKey}&query?page=1&query=${inputCity}`);
+  const unsplashPromise = fetch(`https://api.unsplash.com/search/photos/?client_id=${unsplashKey}&query?page=1&query=${cityName}`);
 
-  const newsApiPromise =  fetch(`https://newsapi.org/v2/everything?q=${inputCity}&from=2021-11-09&sortBy=popularity&apiKey=${newsKey}`);
+  const newsApiPromise =  fetch(`https://newsapi.org/v2/everything?q=${cityName}&from=2021-11-09&sortBy=popularity&apiKey=${newsKey}`);
 
 
   Promise.all([unsplashPromise, newsApiPromise])
@@ -128,7 +125,7 @@ function updateCityData() {
 
 
   /* Chain Goweather API and Giphy API requests */
-  fetch(`https://goweather.herokuapp.com/weather/${inputCity}`) // Fetch weather data from Goweather.
+  fetch(`https://goweather.herokuapp.com/weather/${cityName}`) // Fetch weather data from Goweather.
     .then(response => response.json())
     .then(weather => {
       displayWeather(weather); // Display the temperature and the weather description
@@ -148,5 +145,26 @@ function updateCityData() {
   EVENT LISTENERS
 \*----------------------------------------------------*/
 
-// When user clicks button, update all data and render it on the page.
-searchBtn.addEventListener("click", updateCityData);
+
+// When user presses enter on keyboard, get the submitted data from the form, call updateCityData() passing the city name as argument to update all data and render it on the page.
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const formData = new FormData(userInputForm);
+    // Retrieve value entered by user in input field.
+    const cityName = formData.get("user-input__input--city");
+    // Update data on page.
+    updateCityData(cityName);
+  }
+});
+
+
+// When user clicks button, get the submitted data from the form, call updateCityData() passing the city name as argument to update all data and render it on the page.
+userInputForm.addEventListener('submit', e => {
+  e.preventDefault(); // prevents the form from submitting automatically
+  // FormData interface mirrors a form's native behaviour
+  const formData = new FormData(userInputForm);
+  // Retrieve value entered by user in input field.
+  const cityName = formData.get("user-input__input--city");
+  // Update data on page.
+  updateCityData(cityName);
+});

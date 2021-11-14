@@ -45,10 +45,14 @@
 
           <h2>What city are you interested in?</h2>
 
-          <label for='user-input__input--city' class='user-input__label'>Enter your favourite city!</label>
-          <input type='text' name='user-input__input--city' id='user-input__input--city'>
+          <form class='stack-md' class="user-input__form">
 
-          <button type='button' class='btn user-input__btn'>SEARCH CITY</button>
+            <label for='user-input__input--city' class='user-input__label'>Enter your favourite city!</label>
+            <input type='text' name='user-input__input--city' id='user-input__input--city'>
+
+            <button type='submit' class='btn user-input__btn'>SEARCH CITY</button>
+
+          </form>
 
           <div class="user-input__display"></div>
 
@@ -72,7 +76,10 @@
       <!-- Weather section -->
       <section class='section weather'>
 
-        <div class="section-wrapper stack-lg"></div>
+        <div class="section-wrapper stack-lg">
+          <div class="weather__description"></div>
+          <div class="weather__gif"></div>
+        </div>
 
       </section>
 
