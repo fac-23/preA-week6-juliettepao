@@ -31,7 +31,7 @@ const weatherDescription = document.querySelector(".weather__current-temp");
 /* news */
 const articleBody = document.querySelector('.article__body');
 const currentNews = document.querySelector(".news");
-const newsKey = "070c988ee1c2436c95535e3a38969fc5";
+const newsKey = "ffb6c45e-9bcc-4828-b865-e4f13ac02107";
 
 
 
@@ -40,6 +40,10 @@ const newsKey = "070c988ee1c2436c95535e3a38969fc5";
 /*----------------------------------------------------*\
   APP FUNCTIONS TO DISPLAY FETCHED CONTENT
 \*----------------------------------------------------*/
+
+/* Function to generate random number for different APIs */
+const randomNumber = (number) => Math.floor(Math.random() * number);
+
 
 /* Function to render the user city selection on the page */
 const displayCityName = data => {
@@ -69,7 +73,7 @@ const displayWeather = data => {
 /* Function to display gif from Giphy API */
 const displayGif = data => {
   // Create html to update DOM
-  const html = `<img src="${data.data[0].images.downsized.url}" alt="${data.data[0].title}" class="weather__img">`;
+  const html = `<img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[0].title}" class="weather__img">`;
 
   // update DOM
   weatherImageDiv.innerHTML = html;
@@ -86,15 +90,24 @@ const displayCityPic = data => {
 }
 
 
-/* Function to display articles from the world from newsapi */
+/* Function to display random articles from the city from newsapi */
 const displayArticle = data => {
   // Create html to update DOM
+
   const html = `
   <h2>News</h2>
-  <P>${data.articles[0].content}</P>`;
+  <P>${data.response.results[randomNumber(data.response.results.length)].webTitle}</P>
+  <a href="${data.response.results[randomNumber(data.response.results.length)].webUrl}" target="_blank">Read the full article</a>
+  `;
   // update DOM
   articleBody.innerHTML = html;
 }
+
+//  fetch(`https://api.giphy.com/v1/gifs/search?q=sunny&api_key=${giphyKey}`)
+//   .then(response => response.json())
+//   .then(data => console.log(data.data[randomNumber(data.data.length)].images.downsized.url))
+
+
 
 
 // Function to update ALL data on the page relative to the city, once the user clicks the button.
@@ -105,7 +118,8 @@ function updateCityData(cityName) {
   // Use promiseAll to simultaneously retrieve both unsplash API and news API data.
   const unsplashPromise = fetch(`https://api.unsplash.com/search/photos/?client_id=${unsplashKey}&query?page=1&query=${cityName}`);
 
-  const newsApiPromise =  fetch(`https://newsapi.org/v2/everything?q=${cityName}&from=2021-11-09&sortBy=popularity&apiKey=${newsKey}`);
+  // const newsApiPromise =  fetch(`https://content.guardianapis.com/search?q=${cityName}&api-key=${newsKey}`);
+  const newsApiPromise =  fetch(`https://content.guardianapis.com/search?q=London%20AND%20travel&api-key=${newsKey}`);
 
 
   Promise.all([unsplashPromise, newsApiPromise])
