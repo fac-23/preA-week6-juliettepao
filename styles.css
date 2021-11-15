@@ -155,10 +155,12 @@ h1, span, .user-input__display {
 .section {
     border-radius: 20px;
     text-align: center;
+    /* width: 100%; */
 }
 .section-wrapper {
   padding: 2rem 1rem;
 }
+
 
 @media screen and (min-width: 600px) {
 
@@ -178,7 +180,7 @@ h1, span, .user-input__display {
 
 
 
-.user-input {
+.results1 {
   background-color: var(--color-grey);
 }
 
@@ -193,7 +195,7 @@ h1, span, .user-input__display {
 @media screen and (min-width: 600px) {
   .user-input {
     background-color: var(--color-grey);
-    max-width: 50%;
+    /* max-width: 50%; */
   }
 
   .user-input__display {
@@ -211,7 +213,7 @@ h1, span, .user-input__display {
 
 .results {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
 }
 
 @media screen and (min-width: 600px) {
@@ -248,7 +250,7 @@ h1, span, .user-input__display {
  # WEATHER SECTION
 \*------------------------------------*/
 
-.weather {
+.results2 {
   background-color: var(--color-green);
 }
 

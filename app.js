@@ -17,9 +17,9 @@ const cityInfoDisplay = document.querySelector(".user-input__city-info");
 
 /* Unsplash api */
 const unsplashKey = 'ESaaep_nogLd-aU7_GUQL8Tn_aKGF-YxLkRMLfoDJdU';
+const cityPicSection = document.querySelector(".city-pic");
 
 /* Giphy API */
-const cityPicSection = document.querySelector(".city-pic");
 const giphyKey = "RXsaSeN2Q8Sm1V12ZBhek7ZesgLCWrFY";
 
 /* goweather API */
@@ -44,12 +44,13 @@ const newsKey = "ffb6c45e-9bcc-4828-b865-e4f13ac02107";
 /* Function to generate random number for different APIs */
 const randomNumber = (number) => Math.floor(Math.random() * (number - 1));
 
-const displayGiphyError = () => {
+const displayError = () => {
   return fetch (`https://api.giphy.com/v1/gifs/search?q=error&api_key=${giphyKey}`)
     .then(response => response.json())
     .then(data => {
       const html = `<img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[randomNumber(data.data.length)].title}" class="weather__img">`;
       weatherImageDiv.innerHTML = html;
+      cityPicSection.innerHTML = html;
     })
   }
 
@@ -92,10 +93,11 @@ const displayGif = data => {
 /* Function to display a picture of the city from Unsplash */
 const displayCityPic = data => {
   // Create html to update DOM
-  const html = `<img src="${data.results[0].urls.small}" alt="${data.results[0].alt_description}" class="city-pic__img">`;
+  
+  const html = `<img src="${data.results[randomNumber(data.results.length)].urls.small}" alt="${data.results[randomNumber(data.results.length)].alt_description}" class="city-pic__img">`;
 
   // update DOM
-  cityPicSection.firstElementChild.innerHTML = html;
+  cityPicSection.innerHTML = html;
 }
 
 
@@ -165,10 +167,10 @@ function updateCityData(cityName) {
       console.log(error);
       if(error.message === '404') {
         weatherDescription.innerHTML = `<p>Couldn't retrieve weather for the requested city.</p>`;
-        displayGiphyError();
+        displayError();
       } else {
         weatherDescription.innerHTML = `<p>Something DEFINITELY went wrong HERE</p>`;
-        displayGiphyError();
+        displayError();
       }
     });
 }
