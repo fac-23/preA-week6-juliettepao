@@ -25,8 +25,8 @@ const giphyKey = "RXsaSeN2Q8Sm1V12ZBhek7ZesgLCWrFY";
 /* goweather API */
 const weatherDescriptionDiv = document.querySelector(".weather__description");
 const weatherImageDiv = document.querySelector(".weather__gif");
-const currentTemperature = document.querySelector(".weather__current-temp");
-const weatherDescription = document.querySelector(".weather__current-temp");
+// const currentTemperature = document.querySelector(".weather__current-temp");
+const weatherDescription = document.querySelector(".weather__description");
 
 /* news */
 const articleBody = document.querySelector('.article__body');
@@ -42,7 +42,16 @@ const newsKey = "ffb6c45e-9bcc-4828-b865-e4f13ac02107";
 \*----------------------------------------------------*/
 
 /* Function to generate random number for different APIs */
-const randomNumber = (number) => Math.floor(Math.random() * number);
+const randomNumber = (number) => Math.floor(Math.random() * (number - 1));
+
+const displayGiphyError = () => {
+  return fetch (`https://api.giphy.com/v1/gifs/search?q=error&api_key=${giphyKey}`)
+    .then(response => response.json())
+    .then(data => {
+      const html = `<img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[randomNumber(data.data.length)].title}" class="weather__img">`;
+      weatherImageDiv.innerHTML = html;
+    })
+  }
 
 
 /* Function to render the user city selection on the page */
@@ -73,7 +82,7 @@ const displayWeather = data => {
 /* Function to display gif from Giphy API */
 const displayGif = data => {
   // Create html to update DOM
-  const html = `<img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[0].title}" class="weather__img">`;
+  const html = `<img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[randomNumber(data.data.length)].title}" class="weather__img">`;
 
   // update DOM
   weatherImageDiv.innerHTML = html;
@@ -140,18 +149,32 @@ function updateCityData(cityName) {
 
   /* Chain Goweather API and Giphy API requests */
   fetch(`https://goweather.herokuapp.com/weather/${cityName}`) // Fetch weather data from Goweather.
-    .then(response => response.json())
+    .then(response =>  {
+      if(!response.ok) {
+        const error = new Error(response.status);
+        throw error;
+      }
+      return response.json()})
     .then(weather => {
       displayWeather(weather); // Display the temperature and the weather description
       return fetch(`https://api.giphy.com/v1/gifs/search?q=${weather.description}&api_key=${giphyKey}`) // return a promise to Query the giphy API for a gif using the weather description.
     })
     .then(response => response.json()) // Parse the data received from giphy to Json.
     .then(gifContent => displayGif(gifContent)) // Display the gif image.
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      if(error.message === '404') {
+        weatherDescription.innerHTML = `<p>Couldn't retrieve weather for the requested city.</p>`;
+        displayGiphyError();
+      } else {
+        weatherDescription.innerHTML = `<p>Something DEFINITELY went wrong HERE</p>`;
+        displayGiphyError();
+      }
+    });
 }
 
 
-
+console.log(weatherDescription);
 
 
 
