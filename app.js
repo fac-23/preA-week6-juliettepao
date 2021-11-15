@@ -25,10 +25,9 @@ const giphyKey = "RXsaSeN2Q8Sm1V12ZBhek7ZesgLCWrFY";
 /* goweather API */
 const weatherDescriptionDiv = document.querySelector(".weather__description");
 const weatherImageDiv = document.querySelector(".weather__gif");
-// const currentTemperature = document.querySelector(".weather__current-temp");
 const weatherDescription = document.querySelector(".weather__description");
 
-/* news */
+/* Guardian API */
 const articleBody = document.querySelector('.article__body');
 const currentNews = document.querySelector(".news");
 const newsKey = "ffb6c45e-9bcc-4828-b865-e4f13ac02107";
@@ -44,15 +43,18 @@ const newsKey = "ffb6c45e-9bcc-4828-b865-e4f13ac02107";
 /* Function to generate random number for different APIs */
 const randomNumber = (number) => Math.floor(Math.random() * (number - 1));
 
-const displayError = () => {
+/* Function to display errors */
+const displayError = (errorMessage) => {
   return fetch (`https://api.giphy.com/v1/gifs/search?q=error&api_key=${giphyKey}`)
     .then(response => response.json())
     .then(data => {
-      const html = `<img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[randomNumber(data.data.length)].title}" class="weather__img">`;
-      weatherImageDiv.innerHTML = html;
+      const html = `
+      <p>${errorMessage}</p>
+      <img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[randomNumber(data.data.length)].title}" class="weather__img">`;
+      // weatherImageDiv.innerHTML = html;
       cityPicSection.innerHTML = html;
-    })
-  }
+  })
+}
 
 
 /* Function to render the user city selection on the page */
@@ -68,6 +70,7 @@ const displayCityName = data => {
 const displayWeather = data => {
   // Create html to update DOM
   const html = `
+  <h2>Weather</h2><br>
   <div class="weather-section__description">
     <p>${data.description}</p>
   </div>
@@ -83,7 +86,8 @@ const displayWeather = data => {
 /* Function to display gif from Giphy API */
 const displayGif = data => {
   // Create html to update DOM
-  const html = `<img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[randomNumber(data.data.length)].title}" class="weather__img">`;
+  const html = `
+  <img src="${data.data[randomNumber(data.data.length)].images.downsized.url}" alt="${data.data[randomNumber(data.data.length)].title}" class="weather__img">`;
 
   // update DOM
   weatherImageDiv.innerHTML = html;
@@ -114,11 +118,6 @@ const displayArticle = data => {
   articleBody.innerHTML = html;
 }
 
-//  fetch(`https://api.giphy.com/v1/gifs/search?q=sunny&api_key=${giphyKey}`)
-//   .then(response => response.json())
-//   .then(data => console.log(data.data[randomNumber(data.data.length)].images.downsized.url))
-
-
 
 
 // Function to update ALL data on the page relative to the city, once the user clicks the button.
@@ -130,7 +129,7 @@ function updateCityData(cityName) {
   const unsplashPromise = fetch(`https://api.unsplash.com/search/photos/?client_id=${unsplashKey}&query?page=1&query=${cityName}`);
 
   // const newsApiPromise =  fetch(`https://content.guardianapis.com/search?q=${cityName}&api-key=${newsKey}`);
-  const newsApiPromise =  fetch(`https://content.guardianapis.com/search?q=London%20AND%20travel&api-key=${newsKey}`);
+  const newsApiPromise =  fetch(`https://content.guardianapis.com/search?q=${cityName}%20AND%20travel&api-key=${newsKey}`);
 
 
   Promise.all([unsplashPromise, newsApiPromise])
@@ -166,11 +165,11 @@ function updateCityData(cityName) {
     .catch(error => {
       console.log(error);
       if(error.message === '404') {
-        weatherDescription.innerHTML = `<p>Couldn't retrieve weather for the requested city.</p>`;
-        displayError();
+        let message = "Couldn't retrieve weather for the requested city.";
+        displayError(message);
       } else {
-        weatherDescription.innerHTML = `<p>Something DEFINITELY went wrong HERE</p>`;
-        displayError();
+        let message = "Something DEFINITELY went wrong here. We could not find that city 🤔";
+        displayError(message);
       }
     });
 }

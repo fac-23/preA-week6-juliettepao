@@ -101,10 +101,18 @@ h1, span, .user-input__display {
   font-family: 'anudawregular', 'sans-serif';
 }
 
+.results {
+  display: flex;
+  flex-direction: column;
+}
 
+@media screen and (min-width: 600px) {
 
+  .results {
+    flex-direction: row;
+  } 
 
-
+}
 
 /*------------------------------------*\
  # NAVIGATION
@@ -230,15 +238,10 @@ h1, span, .user-input__display {
  # CITY IMG SECTION
 \*------------------------------------*/
 
-.city-pic{
-  background-color: var(--color-pink);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
 .city-pic__img {
   border: 5px solid #fff;
+  max-height: 40vh;
   max-width: 100%;
 }
 
@@ -252,6 +255,9 @@ h1, span, .user-input__display {
 
 .results2 {
   background-color: var(--color-green);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .weather__img {
