@@ -178,10 +178,33 @@ h1, span, .user-input__display {
 
 }
 
+/*------------------------------------*\
+ # LOADING VISUALISER
+\*------------------------------------*/
 
+.loader{
+  border: 20px dashed var(--color-pink);
+  border-radius: 50%;
+  border-top: 20px solid var(--color-green);
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
 
+.loader-image {
+  max-width: 20px;
+  transform: scaleX(-1)
+}
 
-
+@-webkit-keyframes spin {
+  0% {-webkit-transform: rotate(0deg)}
+  100%{-webkit-transform: rotate(360deg)}
+}
+@keyframes spin{
+    0% {transform: rotate(0deg)}
+  100%{transform: rotate(360deg)}
+}
 /*------------------------------------*\
  # USER INPUT SECTION
 \*------------------------------------*/
