@@ -1,9 +1,3 @@
-/* TO DO:
-
-* Decide what to do with the articles, and if we want them to load when the page loads
-* giphy & unsplash : I want to always retrieve a random image, not always the same
-* Figure out if RoadGoat can be used with fetch
-
 /*-------------------------------------------*\
   VARIABLES
 \*-------------------------------------------*/
@@ -137,7 +131,6 @@ function updateCityData(cityName) {
     `https://api.unsplash.com/search/photos/?client_id=${unsplashKey}&query?page=1&query=${cityName}`,
   )
 
-  // const newsApiPromise =  fetch(`https://content.guardianapis.com/search?q=${cityName}&api-key=${newsKey}`);
   const newsApiPromise = fetch(
     `https://content.guardianapis.com/search?q=${cityName}%20AND%20travel&api-key=${newsKey}`,
   )
